@@ -4,8 +4,8 @@ const configuration = new Configuration({
     apiKey: import.meta.env.VITE_OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
-const defaultNumberOfImageToGenerate = 4;
-const defaultPrompt = 'a large white sci-fi spaceship with detailed metal panels in space';
+const defaultNumberOfImageToGenerate = parseInt(import.meta.env.VITE_NUMBER_OF_IMAGES_TO_GENERATE);
+const defaultPrompt = import.meta.env.VITE_DEFAULT_PROMPT;
 
 async function createDALL_E(imgElement, prompt, size, numberOfImageToGenerate = defaultNumberOfImageToGenerate) {
     const response = await openai.createImage({
@@ -16,6 +16,7 @@ async function createDALL_E(imgElement, prompt, size, numberOfImageToGenerate = 
     console.debug(response);
     dispayImages(imgElement, response.data.data);
 }
+
 async function variationDALL_E(imgElement, previousImage, size, numberOfImageToGenerate = defaultNumberOfImageToGenerate) {
     const response = await openai.createImageVariation(previousImage, numberOfImageToGenerate, size);
     console.debug(response);
