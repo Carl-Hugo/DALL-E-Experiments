@@ -1,5 +1,5 @@
 import './style.css';
-import { setupDALL_E } from './davinci.js';
+import { setupDALL_E } from './openai-dall-e.js';
 
 document.querySelector('#app').innerHTML = `
   <div>
